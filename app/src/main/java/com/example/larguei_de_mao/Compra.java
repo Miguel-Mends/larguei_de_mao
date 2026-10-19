@@ -54,8 +54,21 @@ public class Compra extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_dropdown_item, categorias);
         spCategoria.setAdapter(adapterSpinner);
 
-        carregarListaDeAnuncios(null);
+        // --- AQUI ESTÁ A CORREÇÃO: Escuta a seleção de categoria no Spinner ---
+        spCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String categoriaSelecionada = categorias[position];
+                // Recarrega a lista filtrando pela categoria escolhida
+                carregarListaDeAnuncios(categoriaSelecionada);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        // Clique no item da ListView para ir para a tela de Detalhes
         lvClassificados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
