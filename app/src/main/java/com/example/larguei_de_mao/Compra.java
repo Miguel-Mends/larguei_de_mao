@@ -18,9 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Compra extends AppCompatActivity {
+
     private Spinner spCategoria;
     private ListView lvClassificados;
-    private List<Anuncio> listaDeAnuncios; // Vai guardar os objetos carregados do banco
+    private List<Anuncio> listaDeAnuncios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,48 +36,48 @@ public class Compra extends AppCompatActivity {
         });
 
         spCategoria = findViewById(R.id.sp_categoria);
-        lvClassificados = findViewById(R.id.itens_classificados); // ID da sua ListView
+        lvClassificados = findViewById(R.id.itens_classificados);
 
-        // Botão voltar
         findViewById(R.id.bt_voltar).setOnClickListener(v -> finish());
 
-        // ... (Seu código existente do Spinner vai aqui) ...
         String[] categorias = {
-                "Selecione uma categoria", "Eletrônicos", "Veículos",
-                "Móveis", "Roupas e acessórios", "Esportes", "Casa e jardim", "Outros"
+                "Selecione uma categoria",
+                "Eletrônicos",
+                "Veículos",
+                "Móveis",
+                "Roupas e acessórios",
+                "Esportes",
+                "Casa e jardim",
+                "Outros"
         };
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_dropdown_item, categorias);
         spCategoria.setAdapter(adapterSpinner);
 
-        // --- LÓGICA PARA CARREGAR A LISTA E CONFIGURAR O CLIQUE ---
-        carregarListaDeAnuncios(null); // Carrega tudo inicialmente
+        carregarListaDeAnuncios(null);
 
-        // Adiciona o evento de clique nos itens da ListView
         lvClassificados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Pega o anúncio correspondente à posição clicada na lista
-                Anuncio anuncioClicado = listaDeAnuncios.get(position);
-
-                // Cria a intenção de ir para a tela de Detalhes
-                Intent intent = new Intent(Compra.this, Detalhes.class);
-                // Passa o ID do anúncio como parâmetro extra
-                intent.putExtra("ID_ANUNCIO", anuncioClicado.getId());
-                startActivity(intent);
+                if (listaDeAnuncios != null && position < listaDeAnuncios.size()) {
+                    Anuncio anuncioClicado = listaDeAnuncios.get(position);
+                    Intent intent = new Intent(Compra.this, Detalhes.class);
+                    intent.putExtra("ID_ANUNCIO", anuncioClicado.getId());
+                    startActivity(intent);
+                }
             }
         });
     }
 
-    // Método auxiliar para buscar os anúncios no banco e preencher a ListView
     private void carregarListaDeAnuncios(String categoria) {
         AnuncioControle controle = new AnuncioControle(this);
         listaDeAnuncios = controle.lista_anuncios(categoria);
 
-        // Cria uma lista de Strings só para exibir o título e preço na ListView temporariamente
         List<String> exibicao = new ArrayList<>();
-        for (Anuncio a : listaDeAnuncios) {
-            exibicao.add(a.getTitulo() + " - R$ " + a.getPreco());
+        if (listaDeAnuncios != null) {
+            for (Anuncio a : listaDeAnuncios) {
+                exibicao.add(a.getTitulo() + " - R$ " + String.format("%.2f", a.getPreco()));
+            }
         }
 
         ArrayAdapter<String> adapterList = new ArrayAdapter<>(

@@ -26,27 +26,22 @@ public class Detalhes extends AppCompatActivity {
             return insets;
         });
 
-        // 1. Vincular os elementos usando os IDs exatos do seu activity_detalhes.xml
         tvNome = findViewById(R.id.tv_nome_produto);
         tvPreco = findViewById(R.id.tv_preco_produto);
         tvDescricao = findViewById(R.id.tv_descricao_produto);
 
-        // Botão voltar do cabeçalho
         findViewById(R.id.bt_voltar).setOnClickListener(v -> finish());
 
-        // 2. Receber o ID enviado pela tela de Compra
         int idAnuncio = getIntent().getIntExtra("ID_ANUNCIO", -1);
 
         if (idAnuncio != -1) {
-            // 3. Usa o controle para buscar os dados completos no banco de dados
             AnuncioControle controle = new AnuncioControle(this);
             Anuncio anuncio = controle.busca_anuncio(idAnuncio);
 
-            // 4. Preenche a tela
             if (anuncio != null) {
-                tvNome.setText(anuncio.getTitulo());
-                tvPreco.setText(String.format("R$ %.2f", anuncio.getPreco()));
-                tvDescricao.setText(anuncio.getDescricao());
+                if (tvNome != null) tvNome.setText(anuncio.getTitulo());
+                if (tvPreco != null) tvPreco.setText(String.format("R$ %.2f", anuncio.getPreco()));
+                if (tvDescricao != null) tvDescricao.setText(anuncio.getDescricao());
             } else {
                 Toast.makeText(this, "Anúncio não encontrado.", Toast.LENGTH_SHORT).show();
             }
