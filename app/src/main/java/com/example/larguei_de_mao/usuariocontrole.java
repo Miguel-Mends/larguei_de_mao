@@ -16,7 +16,6 @@ public class usuariocontrole {
         this.banco = new conectadb(contexto);
     }
 
-    // Retorna true se salvou, false se deu erro
     public boolean insere_usuario(usuario usr) {
         try {
             SQLiteDatabase db = banco.getWritableDatabase();
@@ -45,7 +44,7 @@ public class usuariocontrole {
         }
     }
 
-    // Verifica login + senha no banco
+    // Verifica login E senha no banco
     public boolean valida_login(String login, String senha) {
         try {
             SQLiteDatabase db = banco.getReadableDatabase();

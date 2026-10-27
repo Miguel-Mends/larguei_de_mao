@@ -1,6 +1,8 @@
 package com.example.larguei_de_mao;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class Detalhes extends AppCompatActivity {
 
     private TextView tvNome, tvPreco, tvDescricao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,15 @@ public class Detalhes extends AppCompatActivity {
         tvNome = findViewById(R.id.tv_nome_produto);
         tvPreco = findViewById(R.id.tv_preco_produto);
         tvDescricao = findViewById(R.id.tv_descricao_produto);
-
         findViewById(R.id.bt_voltar).setOnClickListener(v -> finish());
+
+        Button btInteresse = findViewById(R.id.bt_interesse);
+        btInteresse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Detalhes.this, "Interesse demonstrado, mensagem enviada ao vendedor", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         int idAnuncio = getIntent().getIntExtra("ID_ANUNCIO", -1);
 

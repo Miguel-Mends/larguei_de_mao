@@ -70,7 +70,7 @@ public class AnuncioControle {
         return lista;
     }
 
-    // Busca um anúncio completo para a tela Detalhes
+    // Busca um anúncio o para a tela Detalhes
     public Anuncio busca_anuncio(int id) {
         try {
             SQLiteDatabase bd = banco.getReadableDatabase();

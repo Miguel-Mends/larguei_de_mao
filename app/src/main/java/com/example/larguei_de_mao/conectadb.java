@@ -18,7 +18,6 @@ public class conectadb extends SQLiteOpenHelper {
             "contato TEXT, " +
             "data TEXT)";
 
-    // Alterado a versão de 1 para 2 para forçar a atualização da estrutura
     conectadb(Context contexto) {
         super(contexto, "osdb", null, 2);
     }

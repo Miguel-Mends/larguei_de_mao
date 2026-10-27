@@ -127,7 +127,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Rodapé de Ação Fixa -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
         android:padding="16dp">
 
         <Button
-            android:id="@+id/bt_comprar"
+            android:id="@+id/bt_interesse"
             android:layout_width="370dp"
             android:layout_height="56dp"
             android:backgroundTint="#3147BA"

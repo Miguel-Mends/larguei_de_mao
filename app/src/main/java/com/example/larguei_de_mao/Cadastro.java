@@ -28,7 +28,6 @@ public class Cadastro extends AppCompatActivity {
 
         findViewById(R.id.bt_voltar).setOnClickListener(v -> finish());
 
-        // AJUSTE os ids abaixo para os que existem no seu activity_cadastro.xml
         etLogin = findViewById(R.id.et_email);
         etSenha = findViewById(R.id.et_senha);
         Button btSalvar = findViewById(R.id.bt_registrar);
