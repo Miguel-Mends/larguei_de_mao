@@ -30,7 +30,6 @@ public class usuariocontrole {
         }
     }
 
-    // Verifica se já existe um usuário com esse login
     public boolean existe_login(String login) {
         try {
             SQLiteDatabase db = banco.getReadableDatabase();
@@ -44,7 +43,6 @@ public class usuariocontrole {
         }
     }
 
-    // Verifica login E senha no banco
     public boolean valida_login(String login, String senha) {
         try {
             SQLiteDatabase db = banco.getReadableDatabase();

@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Compra extends AppCompatActivity {
@@ -83,7 +84,7 @@ public class Compra extends AppCompatActivity {
 
     private void carregarListaDeAnuncios(String categoria) {
         AnuncioControle controle = new AnuncioControle(this);
-        listaDeAnuncios = controle.lista_anuncios(categoria);
+        listaDeAnuncios = Arrays.asList(controle.lista_anuncios(categoria));
 
         List<String> exibicao = new ArrayList<>();
         if (listaDeAnuncios != null) {
